@@ -1,5 +1,14 @@
 <template>
-<div>
-  <h1>Test</h1>
-</div>
+  <div>
+    <Card/>
+  </div>
 </template>
+
+<script>
+import Card from '../components/Card'
+export default {
+  components: {
+    Card
+  }
+}
+</script>
