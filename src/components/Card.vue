@@ -1,32 +1,48 @@
 <template>
   <div>
-    <div v-for="(item, index) in product" :key="index">
-      <b-card
-        title="Card Title"
-        img-src="https://picsum.photos/600/300/?image=25"
-        img-alt="Image"
-        img-top
-        tag="article"
-        style="max-width: 20rem"
-        class="mb-2"
-      >
+    <div v-for="(item, index) in product" :key="index" class="card-style">
+      <b-card>
+        <img :src="`${URL}/${item.image}`" />
         <b-card-text>
-          {{item.price}}
+          {{ item.product_name }}
+          <br />
+          {{ item.category_name }}
+          <br />
+          {{ item.price }}
         </b-card-text>
-
-        <b-button href="#" variant="primary">Go somewhere</b-button>
       </b-card>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+const { URL } = require('../helpers/env')
 export default {
+  data () {
+    return {
+      URL: URL
+    }
+  },
   computed: {
     ...mapGetters({
       product: 'product/getAllProduct'
     })
+  },
+  methods: {
+    ...mapActions({
+      getMenu: 'product/getProduct'
+    })
+  },
+  mounted () {
+    this.getMenu()
   }
 }
 </script>
+
+<style scoped>
+.card-style img {
+  width: 250px;
+  height: 200px;
+}
+</style>

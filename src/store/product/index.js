@@ -3,7 +3,12 @@ import { URL } from '../../helpers/env'
 
 const state = () => {
   return {
-    product: [] // getAll
+    product: [],
+    category: [],
+    isLoading: false,
+    detail: {
+      data: []
+    }
   }
 }
 
@@ -14,7 +19,7 @@ const getters = {
 }
 
 const mutations = {
-  SET_ALL_PRODUCT (state, payload) {
+  SET_PRODUCT (state, payload) {
     state.product = payload
   }
 }
@@ -22,14 +27,12 @@ const mutations = {
 const actions = {
   getProduct (context) {
     return new Promise((resolve, reject) => {
-      axios.get(`${URL}product/getall`)
-        .then((result) => {
-          context.commit('SET_ALL_PRODUCT', result.data.data)
-          resolve()
-        })
-        .catch((err) => {
-          reject(err)
-        })
+      axios.get(`${URL}books/getall`).then((response) => {
+        context.commit('SET_PRODUCT', response.data.data)
+        resolve()
+      }).catch((err) => {
+        reject(err)
+      })
     })
   }
 }
