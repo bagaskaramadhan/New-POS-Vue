@@ -1,18 +1,24 @@
 <template>
-  <div>
-    <div v-for="(item, index) in product" :key="index" class="card-style">
-      <b-card>
-        <img :src="`${URL}/${item.image}`" />
-        <b-card-text>
-          {{ item.product_name }}
-          <br />
-          {{ item.category_name }}
-          <br />
-          {{ item.price }}
-        </b-card-text>
-      </b-card>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-3" v-for="(item, index) in productGetters" :key="index">
+      <b-card class="b-card-style">
+        <img :src="`${URL}/${item.image}`" :alt="`${URL}/${item.image}`">
+        <div class="b-card-text-style">
+          <h5>{{item.product_name}}</h5>
+          <h5>{{item.stock}}</h5>
+          <h5>{{item.price}}</h5>
+          <h5>{{item.category_name}}</h5>
+        </div>
+        <div class="d-flex justify-content-around">
+          <b-button>Detail</b-button>
+          <b-button>Update</b-button>
+          <b-button>Delete</b-button>
+        </div>
+  </b-card>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -26,23 +32,33 @@ export default {
   },
   computed: {
     ...mapGetters({
-      product: 'product/getAllProduct'
+      productGetters: 'product/getAllProduct'
     })
   },
   methods: {
     ...mapActions({
-      getMenu: 'product/getProduct'
+      productActions: 'product/getProduct'
     })
   },
   mounted () {
-    this.getMenu()
+    this.productActions()
   }
 }
 </script>
 
 <style scoped>
-.card-style img {
-  width: 250px;
-  height: 200px;
+.b-card-style{
+  margin-top: 60px;
+  padding: 0px;
+}
+.b-card-style img {
+ display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%
+}
+.b-card-text-style {
+  padding-top: 10px;
+  padding-bottom: 1px;
 }
 </style>
