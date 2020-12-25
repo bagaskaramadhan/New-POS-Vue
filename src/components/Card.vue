@@ -1,25 +1,46 @@
 <template>
-  <div class="container">
-  <div class="row">
-    <div class="col-md-4 mb-3" v-for="(item, index) in productGetters" :key="index">
-      <b-card class="b-card-style">
-        <img :src="`${URL}/${item.image}`" :alt="`${URL}/${item.image}`">
-        <div class="b-card-text-style">
-          <h5>{{item.product_name}}</h5>
-          <h5>{{item.stock}}</h5>
-          <h5>{{item.price}}</h5>
-          <h5>{{item.category_name}}</h5>
+  <div>
+    <div class="row no-gutters">
+      <div
+        class="card column card-style"
+        v-for="(item, index) in productGetters"
+        :key="index"
+      >
+        <img
+          :src="`${URL}${item.image}`"
+          class="card-img-top"
+          :alt="`${URL}${item.image}`"
+        />
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <button class="btn">
+              <b-icon scale="3" icon="clipboard-data" />
+            </button>
+            <button class="btn">
+              <img src="../assets/refresh-button.png" width="50px" />
+            </button>
+            <button class="btn">
+              <b-icon scale="3" icon="trash" />
+            </button>
+          </div>
         </div>
-        <div class="d-flex justify-content-around">
-          <b-button>Detail</b-button>
-          <b-button>Update</b-button>
-          <b-button>Delete</b-button>
-        </div>
-  </b-card>
+      </div>
     </div>
   </div>
-</div>
 </template>
+
+<style scoped>
+.card-style {
+  width: 15rem;
+  margin-left: 45px;
+  margin-top: 5%;
+}
+.btn {
+  border: none;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+</style>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
@@ -45,20 +66,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.b-card-style{
-  margin-top: 60px;
-  padding: 0px;
-}
-.b-card-style img {
- display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%
-}
-.b-card-text-style {
-  padding-top: 10px;
-  padding-bottom: 1px;
-}
-</style>
