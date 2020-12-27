@@ -11,6 +11,7 @@
           class="card-img-top"
           :alt="`${URL}${item.image}`"
         />
+        {{ item.product_name }}
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <button class="btn">
@@ -19,7 +20,7 @@
             <button class="btn">
               <img src="../assets/refresh-button.png" width="50px" />
             </button>
-            <button class="btn">
+            <button class="btn" @click="deleteProduct(item.product_id)">
               <b-icon scale="3" icon="trash" />
             </button>
           </div>
@@ -58,8 +59,14 @@ export default {
   },
   methods: {
     ...mapActions({
-      productActions: 'product/getProduct'
-    })
+      productActions: 'product/getProduct',
+      deleteActions: 'product/deleteProduct'
+    }),
+    deleteProduct (id) {
+      this.deleteActions(id).then(() => {
+        this.productActions()
+      })
+    }
   },
   mounted () {
     this.productActions()

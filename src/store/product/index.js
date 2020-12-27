@@ -49,6 +49,33 @@ const actions = {
           reject(err)
         })
     })
+  },
+  insertProduct (context, payload) {
+    return new Promise((resolve, reject) => {
+      const fd = new FormData()
+      fd.append('product_name', payload.product_name)
+      fd.append('product_category', payload.product_category)
+      fd.append('stock', payload.stock)
+      fd.append('price', payload.price)
+      axios.post(`${URL}books/insert`, fd)
+        .then((result) => {
+          resolve(result)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+    })
+  },
+  deleteProduct (context, payload) {
+    return new Promise((resolve, reject) => {
+      axios.delete(`${URL}books/delete/${payload}`)
+        .then((result) => {
+          resolve(result)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+    })
   }
 }
 
