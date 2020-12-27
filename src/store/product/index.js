@@ -4,7 +4,8 @@ import { URL } from '../../helpers/env'
 const state = () => {
   return {
     product: [],
-    categoryProduct: []
+    categoryProduct: [],
+    detail: []
   }
 }
 
@@ -14,6 +15,9 @@ const getters = {
   },
   getAllCategory (state) {
     return state.categoryProduct
+  },
+  getIdProduct (state) {
+    return state.detail
   }
 }
 
@@ -23,6 +27,9 @@ const mutations = { // mengubah state/data pada aplikasi
   },
   SET_ALL_CATEGORY (state, payload) {
     state.categoryProduct = payload
+  },
+  SET_ID_PRODUCT (state, payload) {
+    state.detail = payload
   }
 }
 
@@ -71,6 +78,18 @@ const actions = {
       axios.delete(`${URL}books/delete/${payload}`)
         .then((result) => {
           resolve(result)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+    })
+  },
+  getDetail (context, payload) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${URL}books/getbyid/${payload}`)
+        .then((result) => {
+          context.commit('SET_ID_PRODUCT', result.data.data)
+          resolve()
         })
         .catch((err) => {
           reject(err)

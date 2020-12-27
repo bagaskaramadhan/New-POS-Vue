@@ -38,9 +38,9 @@
           class="mb-3"
         />
         <div class="d-flex justify-content-around">
-          <b-button type="reset">Reset</b-button>
-          <b-button @click="buttonCancel()">Cancel</b-button>
-          <b-button @click="buttonInsert()">Upload Product</b-button>
+          <b-button variant="danger" type="reset">Reset</b-button>
+          <b-button variant="warning" @click="buttonCancel()">Cancel</b-button>
+          <b-button variant="success" @click="buttonInsert()">Upload Product</b-button>
         </div>
       </form>
     </b-modal>
