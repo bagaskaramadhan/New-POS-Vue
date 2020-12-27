@@ -37,12 +37,19 @@ const actions = {
           reject(err)
         })
     })
+  },
+  getCategory (context) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${URL}category/getall`)
+        .then((response) => {
+          context.commit('SET_ALL_CATEGORY', response.data.data)
+          resolve()
+        })
+        .catch((err) => {
+          reject(err)
+        })
+    })
   }
-  // getCategory (context) {
-  //   return new Promise((resolve, reject)=>{
-  //     axios.get
-  //   })
-  // }
 }
 
 export default {

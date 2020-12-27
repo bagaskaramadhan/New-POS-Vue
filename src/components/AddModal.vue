@@ -2,20 +2,27 @@
   <div>
     <img src="../assets/add.png" width="50px" v-b-modal.addModal />
     <b-modal id="addModal" title="Add Product" class="text-center">
-      <form @submit.prevent="insert" enctype="multipart/form-data">
-        <b-form-input v-model="input.product_name" type="text" placeholder="Product Name" class="mb-3" />
-        <b-form-select v-model="input.category_id" class="mb-3" />
-        <b-form-input v-model="input.stock" type="number" placeholder="Stock" class="mb-3" />
-        <b-form-input v-model="input.Price" type="number" placeholder="Price" class="mb-3" />
-        <!-- <b-form-file v-model="input." placeholder="Choose a file or drop it here..." /> -->
-        <b-button class="mt-3" variant="outline-success" type="button" block @click="load()" name="button">Add</b-button
-        >
+      <form>
+        <b-form-input type="text" placeholder="Product Name" class="mb-3" />
+        <b-form-select class="mb-3">
+          <b-form-select-option
+            v-for="(item, index) in categoryGetters"
+            :key="index"
+            :value="item.category_id"
+          >
+            {{ item.category_name }}
+          </b-form-select-option>
+        </b-form-select>
+        <b-form-input type="number" placeholder="Stock" class="mb-3" />
+        <b-form-input type="number" placeholder="Price" class="mb-3" />
+        <b-button>Add</b-button>
       </form>
     </b-modal>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -27,10 +34,21 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters({
+      categoryGetters: 'product/getAllCategory'
+    })
+  },
   methods: {
+    ...mapActions({
+      categoryActions: 'product/getCategory'
+    }),
     load () {
       console.log(this.input)
     }
+  },
+  mounted () {
+    this.categoryActions()
   }
 }
 </script>
