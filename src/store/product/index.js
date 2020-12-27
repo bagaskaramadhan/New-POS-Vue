@@ -3,19 +3,26 @@ import { URL } from '../../helpers/env'
 
 const state = () => {
   return {
-    product: []
+    product: [],
+    categoryProduct: []
   }
 }
 
 const getters = {
   getAllProduct (state) {
     return state.product // state.product di dapat dari functions state => product
+  },
+  getAllCategory (state) {
+    return state.categoryProduct
   }
 }
 
 const mutations = { // mengubah state/data pada aplikasi
   SET_ALL_PRODUCT (state, payload) { // SET_ALL_PRODUCT di buat untuk actions
     state.product = payload
+  },
+  SET_ALL_CATEGORY (state, payload) {
+    state.categoryProduct = payload
   }
 }
 
@@ -31,6 +38,11 @@ const actions = {
         })
     })
   }
+  // getCategory (context) {
+  //   return new Promise((resolve, reject)=>{
+  //     axios.get
+  //   })
+  // }
 }
 
 export default {
