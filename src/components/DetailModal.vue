@@ -4,7 +4,7 @@
 
   <b-modal id="bv-modal-example" hide-footer>
     <template #modal-title>
-      Using <code>$bvModal</code> Methods
+      {{title}}
     </template>
     <div class="d-block text-center" v-for="(item, index) in idProductGetters" :key="index">
       <h3> asd</h3>
@@ -18,6 +18,9 @@
 import { mapActions, mapGetters } from 'vuex'
 const { URL } = require('../helpers/env')
 export default {
+  props: [
+    'title'
+  ],
   data () {
     return {
       URL: URL

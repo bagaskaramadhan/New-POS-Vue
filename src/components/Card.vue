@@ -2,35 +2,27 @@
   <div>
     <div class="row no-gutters">
       <div
-        class="card column card-style"
-        v-for="(item, index) in productGetters"
+        class="column"
+        v-for="(product, index) in productGetters"
         :key="index"
       >
-        <img
-          :src="`${URL}${item.image}`"
-          class="card-img-top"
-          :alt="`${URL}${item.image}`"
-        />
-        {{ item.product_name }}
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <b-button v-b-modal.modal-1>Launch demo modal</b-button>
-
-            <b-modal id="modal-1" title="BootstrapVue">
-        {{ item.product_name }}
-
-              <p class="my-4">{{item.stock}}</p>
-            </b-modal>
-            <!-- <DetailModal /> -->
-            <!-- <button class="btn" @click="detailProduct(item.product_id)">
-              <b-icon scale="3" icon="clipboard-data" />
-            </button> -->
-            <button class="btn">
-              <img src="../assets/refresh-button.png" width="50px" />
-            </button>
-            <button class="btn" @click="deleteProduct(item.product_id)">
-              <b-icon scale="3" icon="trash" />
-            </button>
+        <div class="card card-style">
+          <img
+            :src="`${URL}${product.image}`"
+            class="card-img-top"
+            :alt="`${URL}${product.image}`"
+          />
+          <div class="card-body">
+            <p>{{ product.product_name }}</p>
+            <p>{{ product.price }}</p>
+            <div class="d-flex justify-content-between">
+              <button class="btn">
+                <img src="../assets/refresh-button.png" width="50px" />
+              </button>
+              <button class="btn" @click="deleteProduct(product.product_id)">
+                <b-icon scale="3" icon="trash" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

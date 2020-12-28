@@ -67,6 +67,7 @@ const actions = {
       axios.post(`${URL}books/insert`, fd)
         .then((result) => {
           resolve(result)
+          window.location = '/'
         })
         .catch((err) => {
           reject(err)
@@ -89,7 +90,8 @@ const actions = {
       axios.get(`${URL}books/getbyid/${payload}`)
         .then((result) => {
           context.commit('SET_ID_PRODUCT', result.data.data)
-          resolve()
+          // resolve()
+          console.log(result)
         })
         .catch((err) => {
           reject(err)

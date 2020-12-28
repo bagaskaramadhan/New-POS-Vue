@@ -40,7 +40,7 @@
         <div class="d-flex justify-content-around">
           <b-button variant="danger" type="reset">Reset</b-button>
           <b-button variant="warning" @click="buttonCancel()">Cancel</b-button>
-          <b-button variant="success" @click="buttonInsert()">Upload Product</b-button>
+          <b-button variant="success" type="submit" @click="buttonInsert()">Upload Product</b-button>
         </div>
       </form>
     </b-modal>
@@ -68,13 +68,12 @@ export default {
   methods: {
     ...mapActions({
       categoryActions: 'product/getCategory',
-      formInsert: 'product/insertProduct',
-      productActions: 'product/getProduct'
+      formInsert: 'product/insertProduct'
     }),
     buttonInsert () {
       this.formInsert(this.input)
         .then(() => {
-          this.productActions()
+          // this.productActions()
           this.$refs['hide-Modal'].hide()
         })
         .catch((err) => {
