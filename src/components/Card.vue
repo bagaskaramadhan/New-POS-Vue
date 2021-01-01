@@ -10,6 +10,7 @@
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <img
+                class="rectangular"
                 :src="`${URL}${product.image}`"
                 alt="Avatar"
                 style="width: 240px"
@@ -17,15 +18,16 @@
             </div>
             <div class="flip-card-back">
               <img
+                class="rectangular"
                 :src="`${URL}${product.image}`"
                 alt="Avatar"
-                style="width: 240px"
+                style="width: 240px; height: 240px"
               />
               <div class="top-left">
-                <h5>{{ product.product_name }}</h5>
-                <p>{{ product.stock }}</p>
-                <p>{{ product.category_name }}</p>
-                <p>{{ product.price }}</p>
+                <p>Product: {{ product.product_name }}</p>
+                <p>Category: {{ product.category_name }}</p>
+                <p>Stock: {{ product.stock }}</p>
+                <p>Price: {{ product.price }}</p>
               </div>
               <div class="button-card">
                 <b-button variant="warning" class="mr-5">Update</b-button>
@@ -44,6 +46,11 @@
 </template>
 
 <style scoped>
+.rectangular {
+  background: 50% 50% no-repeat; /* 50% 50% centers image in div */
+  width: 250px;
+  height: 250px;
+}
 .button-card {
   position: absolute;
   top: 185px;
@@ -98,6 +105,7 @@
   color: #ffffff;
   transform: rotateY(180deg);
 }
+
 .flip-card-back img {
   opacity: 0.5;
 }

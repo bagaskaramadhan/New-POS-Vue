@@ -37,10 +37,13 @@
           placeholder="Price"
           class="mb-3"
         />
+        <b-form-file @change="processFile($event)" type="file" class="mb-3" />
         <div class="d-flex justify-content-around">
           <b-button variant="danger" type="reset">Reset</b-button>
           <b-button variant="warning" @click="buttonCancel()">Cancel</b-button>
-          <b-button variant="success" type="submit" @click="buttonInsert()">Upload Product</b-button>
+          <b-button variant="success" type="submit" @click="buttonInsert()"
+            >Upload Product</b-button
+          >
         </div>
       </form>
     </b-modal>
@@ -56,7 +59,8 @@ export default {
         product_name: null,
         product_category: null,
         stock: null,
-        price: null
+        price: null,
+        image: null
       }
     }
   },
@@ -71,6 +75,7 @@ export default {
       formInsert: 'product/insertProduct'
     }),
     buttonInsert () {
+      this.input.image = this.image
       this.formInsert(this.input)
         .then(() => {
           // this.productActions()
@@ -79,6 +84,9 @@ export default {
         .catch((err) => {
           console.log(err)
         })
+    },
+    processFile (event) {
+      this.image = event.target.files[0]
     },
     buttonCancel () {
       this.$refs['hide-Modal'].hide()

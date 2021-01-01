@@ -64,6 +64,7 @@ const actions = {
       fd.append('product_category', payload.product_category)
       fd.append('stock', payload.stock)
       fd.append('price', payload.price)
+      fd.append('image', payload.image)
       axios.post(`${URL}books/insert`, fd)
         .then((result) => {
           resolve(result)
