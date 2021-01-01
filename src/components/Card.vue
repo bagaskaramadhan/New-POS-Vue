@@ -6,22 +6,35 @@
         v-for="(product, index) in productGetters"
         :key="index"
       >
-        <div class="card card-style">
-          <img
-            :src="`${URL}${product.image}`"
-            class="card-img-top"
-            :alt="`${URL}${product.image}`"
-          />
-          <div class="card-body">
-            <p>{{ product.product_name }}</p>
-            <p>{{ product.price }}</p>
-            <div class="d-flex justify-content-between">
-              <button class="btn">
-                <img src="../assets/refresh-button.png" width="50px" />
-              </button>
-              <button class="btn" @click="deleteProduct(product.product_id)">
-                <b-icon scale="3" icon="trash" />
-              </button>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img
+                :src="`${URL}${product.image}`"
+                alt="Avatar"
+                style="width: 240px"
+              />
+            </div>
+            <div class="flip-card-back">
+              <img
+                :src="`${URL}${product.image}`"
+                alt="Avatar"
+                style="width: 240px"
+              />
+              <div class="top-left">
+                <h5>{{ product.product_name }}</h5>
+                <p>{{ product.stock }}</p>
+                <p>{{ product.category_name }}</p>
+                <p>{{ product.price }}</p>
+              </div>
+              <div class="button-card">
+                <b-button variant="warning" class="mr-5">Update</b-button>
+                <b-button
+                  variant="danger"
+                  @click="deleteProduct(product.product_id)"
+                  >Delete</b-button
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -31,15 +44,62 @@
 </template>
 
 <style scoped>
-.card-style {
+.button-card {
+  position: absolute;
+  top: 185px;
+  left: 20px;
+}
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+.flip-card {
+  background-color: transparent;
   width: 15rem;
   margin-left: 45px;
   margin-top: 5%;
+  /* width: 300px; */
+  height: 15rem;
+  perspective: 1000px;
 }
-.btn {
-  border: none;
-  padding: 12px 16px;
-  cursor: pointer;
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* text-align: center; */
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: #000;
+  color: #ffffff;
+  transform: rotateY(180deg);
+}
+.flip-card-back img {
+  opacity: 0.5;
 }
 </style>
 
