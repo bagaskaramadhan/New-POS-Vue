@@ -1,6 +1,16 @@
 <template>
   <div>
     <div class="row no-gutters">
+      <div>
+        <b-modal id="modalUpdate" hide-footer centered title="Update Product"
+          ><form @submit.prevent="formUpdate" enctype="multipart/form-data">
+            <b-form-input v-model="update.product_name" type="text" class="mb-3" placeholder="Product Name" />
+            <b-form-input type="text" class="mb-3" placeholder="Category" />
+            <b-form-input type="text" class="mb-3" placeholder="Stock" />
+            <b-form-input type="text" class="mb-3" placeholder="Price" />
+          </form>
+        </b-modal>
+      </div>
       <div
         class="column"
         v-for="(product, index) in productGetters"
@@ -30,7 +40,14 @@
                 <p>Price: {{ product.price }}</p>
               </div>
               <div class="button-card">
-                <b-button variant="warning" class="mr-5">Update</b-button>
+                <b-button
+                  variant="warning"
+                  class="mr-5"
+                  type="button"
+                  v-b-modal.modalUpdate
+                  @click="buttonUpdate(product.product_id, index)"
+                  >Update</b-button
+                >
                 <b-button
                   variant="danger"
                   @click="deleteProduct(product.product_id)"
@@ -118,7 +135,15 @@ const { URL } = require('../helpers/env')
 export default {
   data () {
     return {
-      URL: URL
+      URL: URL,
+      update: {
+        product_id: null,
+        product_name: null,
+        product_category: null,
+        price: null,
+        stock: null,
+        image: null
+      }
     }
   },
   computed: {
@@ -130,11 +155,17 @@ export default {
     ...mapActions({
       productActions: 'product/getProduct',
       deleteActions: 'product/deleteProduct'
+      // updateProducts: 'product/updateProduct'
+      // getDetail: 'product/getDetail'
     }),
     deleteProduct (id) {
       this.deleteActions(id).then(() => {
         this.productActions()
       })
+    },
+    buttonUpdate (id, index) {
+      console.log(id)
+      console.log(index)
     }
   },
   mounted () {

@@ -8,7 +8,7 @@
       title="Add Product"
       class="text-center"
     >
-      <form @submit.prevent="formInsert" enctype="multipart/form-data">
+      <form @submit.prevent="formInsertActions" enctype="multipart/form-data">
         <b-form-input
           v-model="input.product_name"
           type="text"
@@ -16,7 +16,7 @@
           class="mb-3"
         />
         <b-form-select class="mb-3" v-model="input.product_category">
-          <b-form-select-option :value="null"> ---- </b-form-select-option>
+          <b-form-select-option :value="null"> Choose Category </b-form-select-option>
           <b-form-select-option
             v-for="(item, index) in categoryGetters"
             :key="index"
@@ -72,11 +72,11 @@ export default {
   methods: {
     ...mapActions({
       categoryActions: 'product/getCategory',
-      formInsert: 'product/insertProduct'
+      formInsertActions: 'product/insertProduct'
     }),
     buttonInsert () {
       this.input.image = this.image
-      this.formInsert(this.input)
+      this.formInsertActions(this.input)
         .then(() => {
           // this.productActions()
           this.$refs['hide-Modal'].hide()
