@@ -88,19 +88,11 @@ const actions = {
   },
   updateProduct (context, payload) {
     return new Promise((resolve, reject) => {
-      const fd = new FormData()
-      fd.append('product_name', payload.product_name)
-      fd.append('product_category', payload.product_category)
-      fd.append('stock', payload.stock)
-      fd.append('price', payload.price)
-      axios.patch(`${URL}books/update/${payload}`)
+      axios.put(`${URL}/books/update/${payload.product_id}`, payload.form)
         .then((result) => {
           resolve(result.data.message)
-          console.log(result.data.message)
-          console.log(result.data)
-        })
-        .catch((err) => {
-          console.log(err)
+        }).catch((err) => {
+          resolve(err)
         })
     })
   },

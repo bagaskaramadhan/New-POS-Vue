@@ -34,8 +34,10 @@
                   variant="warning"
                   class="mr-5"
                   type="button"
-                  v-b-modal.modalUpdate
-                  @click="buttonUpdate(product.product_id, index)"
+                  data-toggle="modal"
+                  data-target="#edit-modal"
+                  @click="$emit('update', product.product_id, index)"
+                  style="cursor: pointer"
                   >Update</b-button
                 >
                 <b-button
@@ -151,10 +153,6 @@ export default {
       this.deleteActions(id).then(() => {
         this.productActions()
       })
-    },
-    buttonUpdate (id, index) {
-      console.log(id)
-      console.log(index)
     }
   },
   mounted () {
