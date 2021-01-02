@@ -96,9 +96,9 @@ const actions = {
       fd.append('image', payload.image)
       axios.patch(`${URL}books/update/${payload.product_id}`, fd)
         .then((result) => {
-          console.log(result)
-          alert(result)
-          resolve()
+          // console.log(result)
+          // alert(result)
+          resolve(result.data)
           // resolve(result.data.message)
         }).catch((err) => {
           console.log(err)
@@ -111,8 +111,8 @@ const actions = {
       axios.get(`${URL}books/getbyid/${payload}`)
         .then((result) => {
           context.commit('SET_ID_PRODUCT', result.data.data)
-          // resolve()
-          console.log(result)
+          resolve(result.data.data)
+          // console.log(result)
         })
         .catch((err) => {
           reject(err)

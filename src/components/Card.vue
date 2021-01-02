@@ -6,66 +6,40 @@
           <b-row>
             <b-col lg="12">
               <form @submit.prevent="formUpdate" enctype="multipart/form-data">
-                <b-row class="my-3">
-                  <b-col lg="3" cols="3">Name</b-col>
-                  <b-col lg="9" cols="9">
-                    <b-form-input
-                      v-model="dataUpdate.product_name"
-                      type="text"
-                      placeholder="Item Name ..."
-                    ></b-form-input>
-                  </b-col>
-                </b-row>
-                <b-row class="my-3">
-                  <b-col lg="3" cols="3">Category</b-col>
-                  <b-col lg="9" cols="9">
-                    <b-form-select v-model="dataUpdate.product_category">
-                      <b-form-select-option
-                        v-for="(category, index) in categoryGetters"
-                        :key="index"
-                        :value="category.category_id"
-                      >
-                        {{ category.category_name }}
-                      </b-form-select-option>
-                    </b-form-select>
-                  </b-col>
-                </b-row>
-                <b-row class="my-3">
-                  <b-col lg="3" cols="3">Stock</b-col>
-                  <b-col lg="9" cols="9">
-                    <b-form-input
-                      v-model="dataUpdate.stock"
-                      type="number"
-                      placeholder="stock"
-                    ></b-form-input>
-                  </b-col>
-                </b-row>
-                <b-row class="my-3">
-                  <b-col lg="3" cols="3">Price</b-col>
-                  <b-col lg="9" cols="9">
-                    <b-form-input
-                      v-model="dataUpdate.price"
-                      type="number"
-                      placeholder="Item Price ..."
-                    ></b-form-input>
-                  </b-col>
-                </b-row>
-                <b-row class="my-3">
-                  <b-col lg="3" cols="3">Image</b-col>
-                  <b-col lg="9" cols="9">
-                    <b-form-file
-                      type="file"
-                      @change="procesFile($event)"
-                    ></b-form-file>
-                  </b-col>
-                </b-row>
+                <b-form-group label-cols="4" label="Product">
+                  <b-form-input type="text" v-model="dataUpdate.product_name" />
+                </b-form-group>
+
+                <b-form-group label-cols="4" label="Category">
+                  <b-form-select v-model="dataUpdate.product_category">
+                    <b-form-select-option :value="dataUpdate.product_category">
+                      Choose Category
+                    </b-form-select-option>
+                    <b-form-select-option
+                      v-for="(category, index) in categoryGetters"
+                      :key="index"
+                      :value="category.category_id"
+                    >
+                      {{ category.category_name }}
+                    </b-form-select-option>
+                  </b-form-select>
+                </b-form-group>
+
+                <b-form-group label-cols="4" label="Stock">
+                  <b-form-input type="number" v-model="dataUpdate.stock" />
+                </b-form-group>
+                <b-form-group label-cols="4" label="Price">
+                  <b-form-input type="text" v-model="dataUpdate.price" />
+                </b-form-group>
+                <b-form-group label-cols="4" label="Image">
+                  <b-form-file @change="processFile($event)" />
+                </b-form-group>
                 <div class="form-button">
                   <b-button
                     class="mt-3"
                     variant="outline-success"
                     type="submit"
                     block
-
                     >Save</b-button
                   >
                   <b-button
@@ -128,6 +102,9 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-9 text-center my-5" v-if="productGetters.length === 0">
+        <img src="https://media.giphy.com/media/l0MYICK7vFjhxwxhK/giphy.gif" alt="No-More" />
+      </div>
     </div>
   </div>
 </template>
@@ -153,7 +130,8 @@
   background-color: transparent;
   width: 15rem;
   margin-left: 45px;
-  margin-top: 5%;
+  margin-top: 15%;
+  margin-bottom: 15%;
   /* width: 300px; */
   height: 15rem;
   perspective: 1000px;
@@ -233,9 +211,9 @@ export default {
         this.productActions()
       })
     },
-    procesFile (event) {
+    processFile (event) {
       this.dataUpdate.image = event.target.files[0]
-      console.log(this.dataUpdate.image)
+      // console.log(this.dataUpdate.image)
     },
     updateGet (id, index) {
       this.getDetail(id)
@@ -254,7 +232,7 @@ export default {
     formUpdate () {
       this.updateProducts(this.dataUpdate)
         .then((response) => {
-          alert(response)
+          // alert(response)
           window.location = '/'
         })
         .catch((err) => {
