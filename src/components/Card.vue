@@ -1,16 +1,6 @@
 <template>
   <div>
     <div class="row no-gutters">
-      <div>
-        <b-modal id="modalUpdate" hide-footer centered title="Update Product"
-          ><form @submit.prevent="formUpdate" enctype="multipart/form-data">
-            <b-form-input v-model="update.product_name" type="text" class="mb-3" placeholder="Product Name" />
-            <b-form-input type="text" class="mb-3" placeholder="Category" />
-            <b-form-input type="text" class="mb-3" placeholder="Stock" />
-            <b-form-input type="text" class="mb-3" placeholder="Price" />
-          </form>
-        </b-modal>
-      </div>
       <div
         class="column"
         v-for="(product, index) in productGetters"
@@ -129,7 +119,6 @@
 </style>
 
 <script>
-// import DetailModal from './DetailModal'
 import { mapActions, mapGetters } from 'vuex'
 const { URL } = require('../helpers/env')
 export default {
