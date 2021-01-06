@@ -1,29 +1,34 @@
 <template>
   <div>
     <div class="container">
-      <div class="row login-page-style">
+      <div class="row register-page-style">
         <div class="col-7">
           <img src="../assets/logo-cafe.png" alt="indonesian-food" />
         </div>
-        <div class="col-5 login-card-style">
+        <div class="col-5 register-card-style">
           <div>
-            <b-card title="Login">
+            <b-card title="Register">
               <hr />
               <b-form>
                 <b-form-group>
-                  <b-form-input v-model="username" :state="validation" />
-                  <b-form-invalid-feedback :state="validation">
+                  <b-form-input type="text" placeholder="Username" />
+                  <b-form-text>
                     Your username must be 5-20 characters.
-                  </b-form-invalid-feedback>
-                  <b-form-valid-feedback :state="validation">
-                    Looks Good.
-                  </b-form-valid-feedback>
+                  </b-form-text>
+                </b-form-group>
+                <b-form-group>
+                  <b-form-input type="email" placeholder="Email" />
                 </b-form-group>
                 <b-form-group>
                   <b-form-input type="password" placeholder="Password" />
                 </b-form-group>
-                <b-button>TEST</b-button>
-                <router-link to="/signup">Sign Up</router-link>
+                <div class="d-flex button-style">
+                  <b-button class="mr-3">Sign in</b-button>
+                  <p class="mt-3">
+                    Do not have account? Click
+                    <router-link to="/login">Login</router-link>
+                  </p>
+                </div>
               </b-form>
             </b-card>
           </div>
@@ -34,11 +39,14 @@
 </template>
 
 <style scoped>
-.login-page-style {
-  margin-top: 10%;
-}
-.login-card-style {
+.register-page-style {
   margin-top: 7%;
+}
+.register-card-style {
+  margin-top: 7%;
+}
+.button-style {
+  justify-content: space-between;
 }
 </style>
 
@@ -51,7 +59,7 @@ export default {
   },
   computed: {
     validation () {
-      return this.username.length >= 5 && this.username.length <= 20
+      return this.username.length >= 3
     }
   }
 }
