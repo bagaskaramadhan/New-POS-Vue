@@ -17,7 +17,7 @@
                   <b-form-input type="password" placeholder="Password" />
                 </b-form-group>
                 <div class="d-flex button-login-style">
-                  <b-button class="mr-3">Sign in</b-button>
+                  <b-button class="mr-3" variant="primary">Login</b-button>
                   <p class="mt-3">
                     Do not have account? Click
                     <router-link to="/register">Register</router-link>
