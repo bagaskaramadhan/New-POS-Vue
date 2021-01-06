@@ -16,7 +16,9 @@
           class="mb-3"
         />
         <b-form-select class="mb-3" v-model="input.product_category">
-          <b-form-select-option :value="null"> Choose Category </b-form-select-option>
+          <b-form-select-option :value="null">
+            Choose Category
+          </b-form-select-option>
           <b-form-select-option
             v-for="(item, index) in categoryGetters"
             :key="index"

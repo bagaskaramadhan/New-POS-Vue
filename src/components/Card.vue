@@ -103,7 +103,10 @@
         </div>
       </div>
       <div class="col-lg-9 text-center my-5" v-if="productGetters.length === 0">
-        <img src="https://media.giphy.com/media/l0MYICK7vFjhxwxhK/giphy.gif" alt="No-More" />
+        <img
+          src="https://media.giphy.com/media/l0MYICK7vFjhxwxhK/giphy.gif"
+          alt="No-More"
+        />
       </div>
     </div>
   </div>

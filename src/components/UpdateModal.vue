@@ -4,39 +4,73 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-body">
-            <form class="form-edit" @submit.prevent="edit()" enctype="multipart/form-data">
+            <form
+              class="form-edit"
+              @submit.prevent="edit()"
+              enctype="multipart/form-data"
+            >
               <h5 class="modal-title mb-4 font-weight-bold">Edit Item</h5>
               <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control shadow-input" v-model="form.productname" />
+                  <input
+                    type="text"
+                    class="form-control shadow-input"
+                    v-model="form.productname"
+                  />
                 </div>
               </div>
               <div class="form-group row">
                 <label for="image" class="col-sm-2 col-form-label">Image</label>
                 <div class="col-sm-10">
-                  <input type="file" @change="process($event)"  class="form-control shadow-input"/>
+                  <input
+                    type="file"
+                    @change="process($event)"
+                    class="form-control shadow-input"
+                  />
                 </div>
               </div>
               <div class="form-group row">
                 <label for="price" class="col-sm-2 col-form-label">Price</label>
                 <div class="col-sm-7">
-                  <input type="number" id="price" class="form-control shadow-input" v-model="form.price" />
+                  <input
+                    type="number"
+                    id="price"
+                    class="form-control shadow-input"
+                    v-model="form.price"
+                  />
                 </div>
               </div>
               <div class="form-group row">
-                <label for="category" class="col-sm-2 col-form-label">Category</label>
+                <label for="category" class="col-sm-2 col-form-label"
+                  >Category</label
+                >
                 <div class="col-sm-5">
-                  <select id="category" class="form-control shadow-input" v-model="form.id_category">
+                  <select
+                    id="category"
+                    class="form-control shadow-input"
+                    v-model="form.id_category"
+                  >
                     <option selected value disabled>Choose Category</option>
-                    <option v-for="(item, index) in Category.data" :key="index" :value="item.id_category">{{item.category}}
+                    <option
+                      v-for="(item, index) in Category.data"
+                      :key="index"
+                      :value="item.id_category"
+                    >
+                      {{ item.category }}
                     </option>
                   </select>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-sm-12 text-right btn-footer">
-                  <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                  <button
+                    type="button"
+                    class="btn btn-cancel"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
                   <button type="submit" class="btn btn-edit">Edit</button>
                 </div>
               </div>
