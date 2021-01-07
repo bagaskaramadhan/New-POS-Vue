@@ -9,15 +9,25 @@
           <div>
             <b-card title="Login">
               <hr />
-              <b-form>
+              <b-form @submit.prevent="formLogin()">
                 <b-form-group>
-                  <b-form-input type="text" placeholder="Username" />
+                  <b-form-input
+                    type="text"
+                    placeholder="Username"
+                    v-model="formData.username"
+                  />
                 </b-form-group>
                 <b-form-group>
-                  <b-form-input type="password" placeholder="Password" />
+                  <b-form-input
+                    type="password"
+                    placeholder="Password"
+                    v-model="formData.password"
+                  />
                 </b-form-group>
                 <div class="d-flex button-login-style">
-                  <b-button class="mr-3" variant="primary">Login</b-button>
+                  <b-button class="mr-3" variant="primary" type="submit"
+                    >Login</b-button
+                  >
                   <p class="mt-3">
                     Do not have account? Click
                     <router-link to="/register">Register</router-link>
@@ -45,5 +55,52 @@
 </style>
 
 <script>
-export default {}
+import Swal from 'sweetalert2'
+import { mapActions } from 'vuex'
+export default {
+  data () {
+    return {
+      formData: {
+        username: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    formLogin () {
+      if (this.formData.username === '' || this.formData.password === '') {
+        Swal.fire({
+          icon: 'error',
+          text: 'Cannot empty'
+        })
+      } else {
+        this.loginActions(this.formData).then((result) => {
+          if (result === 'Login success') {
+            window.location = '/'
+          } else if (result === 'username not registered') {
+            Swal.fire({
+              icon: 'error',
+              text: 'Username not registered'
+            })
+          } else if (result === 'wrong password') {
+            Swal.fire({
+              icon: 'error',
+              text: 'Wrong password'
+            })
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              footer: '<a href>Why do I have this issue?</a>'
+            })
+          }
+        })
+      }
+    },
+    ...mapActions({
+      loginActions: 'auth/login'
+    })
+  }
+}
 </script>

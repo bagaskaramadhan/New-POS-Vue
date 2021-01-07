@@ -36,7 +36,7 @@ const mutations = { // mengubah state/data pada aplikasi
 const actions = {
   getProduct (context) {
     return new Promise((resolve, reject) => {
-      axios.get(`${URL}books/getall`)
+      axios.get(`${URL}product/getall`)
         .then((response) => {
           context.commit('SET_ALL_PRODUCT', response.data.data) // context.commit hanya digunakan untuk GET/Read
           resolve()
@@ -65,7 +65,7 @@ const actions = {
       fd.append('stock', payload.stock)
       fd.append('price', payload.price)
       fd.append('image', payload.image)
-      axios.post(`${URL}books/insert`, fd)
+      axios.post(`${URL}product/insert`, fd)
         .then((result) => {
           resolve(result)
           window.location = '/'
@@ -77,7 +77,7 @@ const actions = {
   },
   deleteProduct (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.delete(`${URL}books/delete/${payload}`)
+      axios.delete(`${URL}product/delete/${payload}`)
         .then((result) => {
           resolve(result)
         })
@@ -94,7 +94,7 @@ const actions = {
       fd.append('stock', payload.stock)
       fd.append('price', payload.price)
       fd.append('image', payload.image)
-      axios.patch(`${URL}books/update/${payload.product_id}`, fd)
+      axios.patch(`${URL}product/update/${payload.product_id}`, fd)
         .then((result) => {
           // console.log(result)
           // alert(result)
@@ -108,7 +108,7 @@ const actions = {
   },
   getDetail (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.get(`${URL}books/getbyid/${payload}`)
+      axios.get(`${URL}product/getbyid/${payload}`)
         .then((result) => {
           context.commit('SET_ID_PRODUCT', result.data.data)
           resolve(result.data.data)
