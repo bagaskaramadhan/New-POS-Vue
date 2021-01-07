@@ -29,6 +29,19 @@ const actions = {
           reject('GAGAL')
         })
     })
+  },
+  register (context, payload) {
+    return new Promise((resolve, reject) => {
+      axios.post(`${URL}users/register`, payload)
+        .then((result) => {
+          // console.log(result.data.message)
+          resolve(result.data.message)
+        })
+        .catch(() => {
+          // eslint-disable-next-line prefer-promise-reject-errors
+          reject('GAGAL')
+        })
+    })
   }
 }
 export default {

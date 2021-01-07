@@ -14,14 +14,14 @@
                   <b-form-input
                     type="text"
                     placeholder="Username"
-                    v-model="formData.username"
+                    v-model="loginData.username"
                   />
                 </b-form-group>
                 <b-form-group>
                   <b-form-input
                     type="password"
                     placeholder="Password"
-                    v-model="formData.password"
+                    v-model="loginData.password"
                   />
                 </b-form-group>
                 <div class="d-flex button-login-style">
@@ -60,7 +60,7 @@ import { mapActions } from 'vuex'
 export default {
   data () {
     return {
-      formData: {
+      loginData: {
         username: '',
         password: ''
       }
@@ -68,13 +68,13 @@ export default {
   },
   methods: {
     formLogin () {
-      if (this.formData.username === '' || this.formData.password === '') {
+      if (this.loginData.username === '' || this.loginData.password === '') {
         Swal.fire({
           icon: 'error',
           text: 'Cannot empty'
         })
       } else {
-        this.loginActions(this.formData).then((result) => {
+        this.loginActions(this.loginData).then((result) => {
           if (result === 'Login success') {
             window.location = '/'
           } else if (result === 'username not registered') {
