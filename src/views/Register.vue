@@ -72,7 +72,7 @@
   margin-top: 7%;
 }
 .register-card-style {
-  margin-top: 7%;
+  margin-top: 3%;
 }
 .button-style {
   justify-content: space-between;
