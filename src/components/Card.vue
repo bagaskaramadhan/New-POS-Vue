@@ -1,6 +1,58 @@
 <template>
   <div>
-    <div class="row no-gutters">
+    <div v-if="token === null">
+      <div class="row no-gutters">
+      <div
+        class="column"
+        v-for="(product, index) in productGetters"
+        :key="index"
+      >
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img
+                class="rectangular"
+                :src="`${URL}${product.image}`"
+                alt="Avatar"
+                style="width: 240px"
+              />
+            </div>
+            <div class="flip-card-back">
+              <img
+                class="rectangular"
+                :src="`${URL}${product.image}`"
+                alt="Avatar"
+                style="width: 240px; height: 240px"
+              />
+              <div class="top-left">
+                <p>Product: {{ product.product_name }}</p>
+                <p>Category: {{ product.category_name }}</p>
+                <p>Stock: {{ product.stock }}</p>
+                <p>Price: {{ product.price }}</p>
+              </div>
+              <!-- <div class="button-card">
+                <b-button
+                  variant="warning"
+                  class="mr-5 btn"
+                  type="button"
+                  v-b-modal.editProduct
+                  @click="updateGet(product.product_id, index)"
+                  >Update</b-button
+                >
+                <b-button
+                  variant="danger"
+                  @click="deleteProduct(product.product_id)"
+                  >Delete</b-button
+                >
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div v-else>
+      <div class="row no-gutters">
       <div>
         <b-modal id="editProduct" hide-footer centered title="Edit Item">
           <b-row>
@@ -109,6 +161,7 @@
         />
       </div>
     </div>
+    </div>
   </div>
 </template>
 
@@ -185,6 +238,7 @@ const { URL } = require('../helpers/env')
 export default {
   data () {
     return {
+      token: localStorage.getItem('token') || null,
       URL: URL,
       dataUpdate: {
         product_id: null,
