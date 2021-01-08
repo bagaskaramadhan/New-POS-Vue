@@ -39,7 +39,11 @@
                     type="password"
                     placeholder="Password"
                     v-model="registerData.password"
+                    :state="passwordLength"
                   />
+                  <b-form-invalid-feedback>
+                    Password more than 10 characters.
+                  </b-form-invalid-feedback>
                 </b-form-group>
                 <b-form-group>
                   <b-form-input
@@ -142,6 +146,9 @@ export default {
   computed: {
     passwordValidation () {
       return this.registerData.password2 === this.registerData.password
+    },
+    passwordLength () {
+      return this.registerData.password.length >= 10
     }
   }
 }
