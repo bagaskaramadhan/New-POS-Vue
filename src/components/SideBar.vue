@@ -15,6 +15,9 @@
       <div class="body-sidebar-style">
         <AddModal />
       </div>
+      <div class="body-sidebar-style logout-Button" @click="onLogout()">
+        <img src="../assets/logout.svg" alt="Logout" style="width: 50px">
+      </div>
     </b-sidebar>
   </div>
 </template>
@@ -24,12 +27,22 @@ import AddModal from './AddModal'
 export default {
   components: {
     AddModal
+  },
+  methods: {
+    onLogout () {
+      localStorage.removeItem('token')
+      localStorage.removeItem('admin')
+      window.location = '/login'
+    }
   }
 }
 </script>
 
 <style scoped>
 .body-sidebar-style {
-  margin-top: 100px;
+  margin-top: 60px;
+}
+.logout-Button {
+  cursor: pointer;
 }
 </style>
