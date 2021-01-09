@@ -32,7 +32,7 @@ export default {
     onLogout () {
       localStorage.removeItem('token')
       localStorage.removeItem('admin')
-      window.location = '/login'
+      window.location = '/'
     }
   }
 }

@@ -2,7 +2,7 @@
   <div>
     <div class="row no-gutters text-center Navbar">
         <div class="col-1 mt-3">
-          <SideBar />
+          <SideBarAdmin />
         </div>
         <div class="col-8 mt-3"><h1>Online Shop</h1></div>
         <div class="col mt-3">
@@ -27,11 +27,11 @@
 
 <script>
 import Card from '../components/Card'
-import SideBar from '../components/SideBar'
+import SideBarAdmin from '../components/SideBarAdmin'
 export default {
   components: {
     Card,
-    SideBar
+    SideBarAdmin
   }
 }
 </script>

@@ -2,9 +2,9 @@
   <div>
     <div class="row no-gutters text-center Navbar">
         <div class="col-1 mt-3">
-          <SideBar />
+          <SideBarCashier />
         </div>
-        <div class="col-8 mt-3"><h1>Online Shop</h1></div>
+        <div class="col-8 mt-3"><h1>Point Of Sales</h1></div>
         <div class="col mt-3">
           Checkout
         </div>
@@ -27,11 +27,11 @@
 
 <script>
 import Card from '../components/Card'
-import SideBar from '../components/SideBar'
+import SideBarCashier from '../components/SideBarCashier'
 export default {
   components: {
     Card,
-    SideBar
+    SideBarCashier
   }
 }
 </script>

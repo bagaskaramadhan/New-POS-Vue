@@ -2,11 +2,11 @@
   <div>
     <div class="row no-gutters text-center Navbar">
         <div class="col-1 mt-3">
-          <SideBar />
+          <!-- <SideBar /> -->
         </div>
-        <div class="col-8 mt-3"><h1>Online Shop</h1></div>
+        <div class="col-8 mt-3"><h1>Point Of Sales</h1></div>
         <div class="col mt-3">
-          <router-link to="/login">LOGIN</router-link>
+          <router-link to="/login"><img class="logo-Login" src="../assets/profile.svg"/></router-link>
         </div>
       </div>
       <div class="row no-gutters">
@@ -27,11 +27,17 @@
 
 <script>
 import Card from '../components/Card'
-import SideBar from '../components/SideBar'
+// import SideBar from '../components/SideBar'
 export default {
   components: {
-    Card,
-    SideBar
+    Card
+    // SideBar
   }
 }
 </script>
+
+<style scoped>
+.logo-Login{
+  width: 50px;
+}
+</style>
