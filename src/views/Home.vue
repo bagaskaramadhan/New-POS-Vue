@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="$route.path === '/' && token === null">
+    <div v-if="$route.path === '/' && token === null || token === undefined">
       <div class="row no-gutters text-center Navbar">
         <div class="col-1 mt-3">
           <SideBar />
