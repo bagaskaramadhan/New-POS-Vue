@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-import About from '../views/About.vue'
+import History from '../views/History.vue'
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -25,9 +25,9 @@ const routes = [
     component: Register
   },
   {
-    path: '/about',
-    name: 'About',
-    component: About,
+    path: '/history',
+    name: 'History',
+    component: History,
     meta: {
       requiresAuth: true
     }

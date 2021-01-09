@@ -22,6 +22,8 @@ const actions = {
       axios.post(`${URL}users/login`, payload)
         .then((result) => {
           localStorage.setItem('token', result.data.data.token)
+          localStorage.setItem('admin', result.data.data.admin)
+          // localStorage.setItem('token', result.data.data.token)
           // console.log(result.data.message)
           resolve(result.data.message)
         }).catch(() => {

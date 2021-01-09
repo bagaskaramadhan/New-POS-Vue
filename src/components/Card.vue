@@ -27,24 +27,43 @@
               <div class="top-left">
                 <p>Product: {{ product.product_name }}</p>
                 <p>Category: {{ product.category_name }}</p>
-                <p>Stock: {{ product.stock }}</p>
-                <p>Price: {{ product.price }}</p>
+                <p>Price: Rp. {{ product.price }}</p>
               </div>
-              <!-- <div class="button-card">
-                <b-button
-                  variant="warning"
-                  class="mr-5 btn"
-                  type="button"
-                  v-b-modal.editProduct
-                  @click="updateGet(product.product_id, index)"
-                  >Update</b-button
-                >
-                <b-button
-                  variant="danger"
-                  @click="deleteProduct(product.product_id)"
-                  >Delete</b-button
-                >
-              </div> -->
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div v-else-if="admin === '2'">
+      <div class="row no-gutters">
+      <div
+        class="column"
+        v-for="(product, index) in productGetters"
+        :key="index"
+      >
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img
+                class="rectangular"
+                :src="`${URL}${product.image}`"
+                alt="Avatar"
+                style="width: 240px"
+              />
+            </div>
+            <div class="flip-card-back">
+              <img
+                class="rectangular"
+                :src="`${URL}${product.image}`"
+                alt="Avatar"
+                style="width: 240px; height: 240px"
+              />
+              <div class="top-left">
+                <p>Product: {{ product.product_name }}</p>
+                <p>Category: {{ product.category_name }}</p>
+                <p>Price: Rp. {{ product.price }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -132,8 +151,7 @@
               <div class="top-left">
                 <p>Product: {{ product.product_name }}</p>
                 <p>Category: {{ product.category_name }}</p>
-                <p>Stock: {{ product.stock }}</p>
-                <p>Price: {{ product.price }}</p>
+                <p>Price: Rp. {{ product.price }}</p>
               </div>
               <div class="button-card">
                 <b-button
@@ -239,6 +257,7 @@ export default {
   data () {
     return {
       token: localStorage.getItem('token') || null,
+      admin: localStorage.getItem('admin'),
       URL: URL,
       dataUpdate: {
         product_id: null,

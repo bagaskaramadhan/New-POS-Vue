@@ -1,36 +1,13 @@
 <template>
   <div>
-    <div v-if="$route.path === '/' && token === null || token === undefined">
-      <div class="row no-gutters text-center Navbar">
-        <div class="col-1 mt-3">
-          <SideBar />
-        </div>
-        <div class="col-8 mt-3"><h1>Online Shop</h1></div>
-        <div class="col mt-3">
-          <router-link to="/login">LOGIN</router-link>
-        </div>
-      </div>
-      <div class="row no-gutters">
-        <div class="col-1" />
-        <div class="col-8"><Card /></div>
-        <div class="col" />
-      </div>
+    <div v-if="($route.path === '/' && token === null) || token === undefined">
+      <Header />
+    </div>
+    <div v-else-if="admin === '2'">
+      <HeaderCashier/>
     </div>
     <div v-else>
-      <div class="row no-gutters text-center Navbar">
-        <div class="col-1 mt-3">
-          <SideBar />
-        </div>
-        <div class="col-8 mt-3"><h1>Online Shop</h1></div>
-        <div class="col mt-3">
-          Checkout
-        </div>
-      </div>
-      <div class="row no-gutters">
-        <div class="col-1" />
-        <div class="col-8"><Card /></div>
-        <div class="col" />
-      </div>
+      <HeaderAdmin />
     </div>
   </div>
 </template>
@@ -44,17 +21,20 @@
 </style>
 
 <script>
-import Card from '../components/Card'
-import SideBar from '../components/SideBar'
+import Header from '../components/Header'
+import HeaderAdmin from '../components/HeaderAdmin'
+import HeaderCashier from '../components/HeaderCashier'
 export default {
   data () {
     return {
-      token: localStorage.getItem('token') || null
+      token: localStorage.getItem('token') || null,
+      admin: localStorage.getItem('admin')
     }
   },
   components: {
-    Card,
-    SideBar
+    Header,
+    HeaderAdmin,
+    HeaderCashier
   }
 }
 </script>

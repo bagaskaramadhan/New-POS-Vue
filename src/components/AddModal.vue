@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../assets/add.png" width="50px" v-b-modal.addModal />
+    <img src="../assets/AddProduct.svg" width="50px" v-b-modal.addModal />
     <b-modal
       ref="hide-Modal"
       hide-footer
