@@ -4,7 +4,7 @@
         <div class="col-1 mt-3">
           <SideBarAdmin />
         </div>
-        <div class="col-8 mt-3"><h1>Online Shop</h1></div>
+        <div class="col-8 mt-3"><h1>Point Of Sales</h1></div>
         <div class="col mt-3">
           Checkout
         </div>
